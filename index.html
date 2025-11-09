@@ -159,6 +159,15 @@
     </style>
 </head>
 <body>
+        <!-- Background Birthday Music -->
+    <audio autoplay loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Play Button for User Interaction -->
+    <button id="playBtn" style="position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 10px 20px; background: #ffd700; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+        🔊 Play Music
+    </button>
     <div class="container">
         <h1>🎉 Happy Birthday 🎉</h1>
         <div class="name">HEMANT</div>
@@ -203,6 +212,28 @@
                 setTimeout(() => firework.remove(), 1000);
             }
         }, 1000);
+
+                            // Audio Control
+        const audio = document.querySelector('audio');
+        const playBtn = document.getElementById('playBtn');
+        let isPlaying = false;
+        
+        // Try to play audio automatically
+        audio.play().catch(() => {
+            // If autoplay is blocked, show button
+            playBtn.style.display = 'block';
+        });
+        
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '🔊 Play Music';
+            } else {
+                audio.play();
+                playBtn.textContent = '🔇 Pause Music';
+            }
+            isPlaying = !isPlaying;
+        });
     </script>
 </body>
 </html>
